@@ -113,7 +113,7 @@ const pitchersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch
 
 function HomePage() {
   const [rosterData, setRosterData] = useState({});
-  const [isHiddenOn, setIsHiddenOn] = useState(true);  // toggle this for admin
+  const [isHiddenOn, setIsHiddenOn] = useState(false);  // toggle this for admin
 
   // let commaString = ['name','roster','pos','team','posType'];
   // let commaSource = [];
