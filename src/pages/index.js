@@ -7,7 +7,7 @@ import { PlayerMapper } from '../components/PlayerMapper';
 import { PageHeader } from '../components/PageHeader';
 import { Layout } from '../components/Layout';
 
-import rosters2022 from '../data/rosters2022.json';
+import rosters2023 from '../data/rosters2023.json';
 import { saveRosters } from '../data/saveRosters';
 
 import { usePoolContext } from '../data/PoolContextProvider';
@@ -100,9 +100,9 @@ export const sortRosterPlayers = (players) => {
 */
 // const battersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch_env=prod&season=2021&stats=season&group=hitting&gameType=R&limit=1000&offset=0&sortStat=onBasePlusSlugging&order=desc&playerPool=ALL_CURRENT&leagueIds=103";
 
-const battersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch_env=prod&season=2022&sportId=1&stats=season&group=hitting&gameType=R&limit=300&offset=0&sortStat=onBasePlusSlugging&order=desc";
+const battersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch_env=prod&season=2023&sportId=1&stats=season&group=hitting&gameType=R&limit=300&offset=0&sortStat=onBasePlusSlugging&order=desc";
 
-const pitchersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch_env=prod&season=2022&stats=season&group=pitching&gameType=R&limit=1000&offset=0&sortStat=earnedRunAverage&order=asc&playerPool=ALL_CURRENT&leagueIds=103";
+const pitchersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch_env=prod&season=2023&stats=season&group=pitching&gameType=R&limit=1000&offset=0&sortStat=earnedRunAverage&order=asc&playerPool=ALL_CURRENT&leagueIds=103";
 
 
 
@@ -114,6 +114,25 @@ const pitchersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch
 function HomePage() {
   const [rosterData, setRosterData] = useState({});
   const [isHiddenOn, setIsHiddenOn] = useState(false);  // toggle this for admin
+
+  // let commaString = ['name','roster','pos','team','posType'];
+  // let commaSource = [];
+
+
+  // let tempOutput = rosters2023['bashers'].players;
+
+
+  // Object.keys(rosters3).map((rosterKey) => {
+  //   rosters2023[rosterKey].players.map((player) => {
+  //     commaSource.push({
+  //       name:player.name,
+  //       roster: player.roster,
+  //       pos: player.pos,
+  //       team: player.team,
+  //       postType: player.postType,
+  //     });
+  //   })
+  // });
 
   const [rosterTotals, setRosterTotals] = useState([]);
 
@@ -132,10 +151,10 @@ function HomePage() {
   useEffect(() => {
 
     // if (!window.localStorage.getItem(CONSTANTS.ROSTER_DATA_NAME)) {
-    //   window.localStorage.setItem(CONSTANTS.ROSTER_DATA_NAME, JSON.stringify(rosters2022));
+    //   window.localStorage.setItem(CONSTANTS.ROSTER_DATA_NAME, JSON.stringify(rosters2023));
     // }
     //let rosterBlob = JSON.parse(window.localStorage.getItem(CONSTANTS.ROSTER_DATA_NAME));
-    let rosterBlob = rosters2022;
+    let rosterBlob = rosters2023;
     Object.keys(rosterBlob).map((rosterKey) => {
       rosterBlob[rosterKey].players.map((player) => {
         if (!player.roster) {
@@ -609,7 +628,9 @@ function HomePage() {
     // console.log('| clonedRosterData ', clonedRosterData);
     // console.log('|');
 
-    // saveRosters(clonedRosterData);  
+    // 
+    
+    saveRosters(clonedRosterData);  
   };
 
 
@@ -661,10 +682,14 @@ function HomePage() {
 
   const onSavePlayer = (player) => {
 
-    // console.log(`| SAVE player  ${JSON.stringify(player)}  `);
-    if (player && player.roster) {
-      const clonedRosterData = {...rosterData};
 
+    if (player && player.roster) {
+      if (!player.total) {
+        player.total = 0;
+
+      }
+      const clonedRosterData = {...rosterData};
+console.log(`| SAVE player  ${JSON.stringify(player)}  `);
       const targetRoster = clonedRosterData[player.roster];
 
       const existingPlayerFilter = targetRoster.players.filter((rosterPlayer) => {
@@ -746,11 +771,11 @@ return (<Layout>
 
       <Flex>
         {
-          rosterData && Object.keys(rosterData).map((rosterKey) => {
+          rosterData && Object.keys(rosterData).map((rosterKey, index) => {
             const currentRoster = rosterData[rosterKey];
             currentRoster.players = sortRosterPlayers(currentRoster.players);
             return (
-              <RosterManager onUpdateRosterTotal={onUpdateRosterTotal} mlbPitchers={state?.mlbPitchers?.stats} mlbHitters={state?.mlbHitters?.stats} roster={currentRoster} saveRosters={onSaveRosters} isHiddenOn={isHiddenOn} />     
+              <RosterManager key={index} onUpdateRosterTotal={onUpdateRosterTotal} mlbPitchers={state?.mlbPitchers?.stats} mlbHitters={state?.mlbHitters?.stats} roster={currentRoster} saveRosters={onSaveRosters} isHiddenOn={isHiddenOn} />     
             );
           })
         }
@@ -766,7 +791,7 @@ return (<Layout>
       </div>
 
       
-      {isHiddenOn && <textarea rows="12" cols="90" defaultValue={JSON.stringify(rosterData)} />}
+      {isHiddenOn && <textarea rows="12" cols="90" alue={JSON.stringify(rosterData)} />}
   </Layout>);
 }
 

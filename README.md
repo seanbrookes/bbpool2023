@@ -1,4 +1,4 @@
-# bbpool2021
+# bbpool2023
 Annual friends baseball pool site.
 
 Note to self: use Google sheets  for the draft/protected list
@@ -9,6 +9,8 @@ Players are mapped to player id properties from the mlb stats db.
 
 On demand the latest stats are pulled from the api and a React context state store is created and cached for the duration of the visit.
 
+The project needs a '/bak' folder to be created on the root to write backup roster files to
+
 Each roster is comprised of top players at each of the main positions scoring based on key stats
 hitters: runs, hits, HR's, rbi, sb
 starters: wins, losses, and k's
@@ -16,7 +18,7 @@ closers: wins, saves, k's
 
 Hosted using Vercel app hosting - pretty slick
 
-https://bbpool2021.vercel.app/
+https://bbpool2023.vercel.app/
 ![pool screenshot](https://user-images.githubusercontent.com/1751524/124396823-ce6ccb00-dcc0-11eb-81cd-e390f6bb16f0.png)
 
 
@@ -49,4 +51,4 @@ hiiter total calc:
 ```
 
 
-special note of appreciation for mlb to be ok with small fish to access their stats api.
+special note of appreciation for mlb to be ok with small fish accessing their stats api.

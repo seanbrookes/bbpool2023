@@ -2,7 +2,7 @@ import React, {useState, useEffect}  from 'react';
 import { getPitcherStats, getHitterStats } from '../data/fetchStats';
 import styled from 'styled-components';
 import { usePoolContext } from '../data/PoolContextProvider';
-import rosters2021 from '../data/rosters2022.json';
+import rosters2023 from '../data/rosters2023.json';
 import { saveRosters } from '../data/saveRosters';
 import { CONSTANTS } from '../constants';
 
@@ -236,7 +236,7 @@ export const PlayerMapper = ({rosterData, savePlayer, refreshPlayers}) => {
                   //   return (<div />);
                   // }
                   // else {
-                    return (<div>{index + 1}) {rosterHitter.roster} <button onClick={(event) => onSelectRosterHitter(event, rosterHitter)} >{rosterHitter.playerId}{rosterHitter.name}</button></div>);
+                    return (<div key={index}>{index + 1}) {rosterHitter.roster} <button onClick={(event) => onSelectRosterHitter(event, rosterHitter)} >{rosterHitter.playerId}{rosterHitter.name}</button></div>);
                   // }
                 })}
                 </MlbPlayerScrollBox>
@@ -246,7 +246,7 @@ export const PlayerMapper = ({rosterData, savePlayer, refreshPlayers}) => {
                 <div>Hitters</div>
                 <MlbPlayerScrollBox>
                   {mHitters && mHitters.map((hitter, index) => {
-                    return (<div>{index + 1}) <button onClick={(event) => onSelectSourceHitter(event, hitter)} >{hitter.playerName}[{hitter.playerId}]</button></div>)
+                    return (<div key={index}>{index + 1}) <button onClick={(event) => onSelectSourceHitter(event, hitter)} >{hitter.playerName}[{hitter.playerId}]</button></div>)
                   })}
                 </MlbPlayerScrollBox>
               </div>
@@ -267,7 +267,7 @@ export const PlayerMapper = ({rosterData, savePlayer, refreshPlayers}) => {
                     //   return (<div/>);
                     // }
                     // else {
-                      return (<div>{index + 1}) <button onClick={(event) => onSelectRosterPitcher(event, rosterPitcher)} >{rosterPitcher.playerId}{rosterPitcher.name}</button></div>)
+                      return (<div key={index}>{index + 1}) <button onClick={(event) => onSelectRosterPitcher(event, rosterPitcher)} >{rosterPitcher.playerId}{rosterPitcher.name}</button></div>)
                     // }
                   })}
                 </MlbPlayerScrollBox>
@@ -276,7 +276,7 @@ export const PlayerMapper = ({rosterData, savePlayer, refreshPlayers}) => {
                 <div>Pitchers</div>
                 <MlbPlayerScrollBox>
                 {mPitchers && mPitchers.map((pitcher, index) => {
-                  return (<div>{index + 1}) <button onClick={(event) => onSelectSourcePitcher(event, pitcher)} >{pitcher.playerName}[{pitcher.playerId}]</button></div>)
+                  return (<div key={index}>{index + 1}) <button onClick={(event) => onSelectSourcePitcher(event, pitcher)} >{pitcher.playerName}[{pitcher.playerId}]</button></div>)
                 })}
                 </MlbPlayerScrollBox>
               </div>

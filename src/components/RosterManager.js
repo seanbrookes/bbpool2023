@@ -718,9 +718,7 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
 
       saveRosters(updatedRoster);
 
-      
-
-   }
+    }
   };
 
   const onCreatePlayer = () => {
