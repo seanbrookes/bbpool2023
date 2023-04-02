@@ -464,9 +464,20 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
           if (rawPitcherStats) {
             rawPitcherStats.roster = roster.slug;
             rawPitcherStats.poolPos = player.pos;
+            rawPitcherStats.nickname = player.nickname;
             rawPosTypeScoreData['starters'][player.nickname] = rawPitcherStats;
 
             const currentPitcher = player && rawPosTypeScoreData && rawPosTypeScoreData['starters'] && rawPosTypeScoreData['starters'][player.nickname];
+ 
+ 
+ /**
+  * THIS GETSTARTERTOTAL LOOKS SUS - IT ISN'T GETTING THE MLB ID?
+  * 
+  * 
+  */
+  if (player.playerId === 669923) {
+    console.log('| kirby');
+  }
             player.total = currentPitcher ? getStarterTotal(currentPitcher) : 0;
             rawPosTypeScoreData['starters'][player.nickname].total = player.total;
             rawPosTypeScoreData['starters'][player.nickname].newsLink = player.newsLink ? player.newsLink : '';
@@ -521,6 +532,7 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
       setCurrentRosterScoreData(positionScoreData);
       setCurrentRawScoreData(rawPosTypeScoreData);
       setCurrentRoster({...roster});
+
 
       if (rawPosTypeScoreData) {
         try {

@@ -623,7 +623,7 @@ function HomePage() {
         }
       });
     });
-
+    
     // console.log('|');
     // console.log('| clonedRosterData ', clonedRosterData);
     // console.log('|');
@@ -632,6 +632,24 @@ function HomePage() {
     
     saveRosters(clonedRosterData);  
   };
+
+
+  // each new year we have to clear the total property for each player so it doesn't
+  // show up next season with last year total before they get new stats to overwrite
+  const zeroYearTotals = () => {
+    const clonedRosterData = {...rosterData};
+
+    const a = clonedRosterData;
+    Object.keys(clonedRosterData).map((rosterKey) => {
+      clonedRosterData[rosterKey].players = clonedRosterData[rosterKey].players.map((player) => {
+        player.total = 0;
+        return player;
+      });
+    });
+    // should only need to do this at the beginning of the year
+    // saveRosters(clonedRosterData); 
+  };
+
 
 
   const onHiddenControlClick = (event) => {
@@ -767,7 +785,8 @@ return (<Layout>
 
     {isHiddenOn && <PlayerMapper rosterData={rosterData} savePlayer={onSavePlayer} mlbHitters={state?.mlbHitters?.stats} mlpPitchers={state?.mlpPitchers?.stats} />}
     {isHiddenOn && <AddPlayerForm savePlayer={onSavePlayer} />}
-    {isHiddenOn&& <button onClick={addNickName}>unique-name-id</button>}
+    {isHiddenOn&& <button onClick={addNickName}>process nicknames</button>}
+    {isHiddenOn&& <button onClick={zeroYearTotals}>zero totals</button>}
 
       <Flex>
         {

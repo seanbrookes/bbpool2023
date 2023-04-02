@@ -3,6 +3,11 @@ Annual friends baseball pool site.
 
 Note to self: use Google sheets  for the draft/protected list
 
+at the beginning of the season we need to:
+- update the year in a number of places (page and documentation titles, fetch urls, etc)
+- each player needs a unique 'nickname' to bridge unique/foreign key links for players with no official record at mlb yet
+- when we copy over the roster json it is important to zero out the totals of each player to avoid distortion at the beginning of the year.
+
 It hosts 4 teams with protected rosters between seasons and then facilitates a draft before the season to fill out unprotected positions in each roster.
 
 Players are mapped to player id properties from the mlb stats db.
