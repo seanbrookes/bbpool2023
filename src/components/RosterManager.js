@@ -498,8 +498,23 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
 
         */
           if (player.nickname) {
-            const rawRelieverStats = mlbPitchers && mlbPitchers[player.playerId];
-            if (rawRelieverStats) {
+            let rawRelieverStats = mlbPitchers && mlbPitchers[player.playerId];
+            if (!rawRelieverStats) {
+              rawRelieverStats = {
+                wins: 0,
+                ip: 0,
+                saves: 0,
+                losses: 0,
+                strikeOuts: 0
+              };
+              const mergedCloserData = {...player, ...rawRelieverStats};
+              if (!positionScoreData['RP']) {
+                positionScoreData['RP'] = {};
+              }
+
+              positionScoreData['RP'][mergedCloserData.nickname] = mergedCloserData;
+            }
+            else { 
               rawRelieverStats.roster = roster.slug;
               rawRelieverStats.poolPos = player.pos;
               rawPosTypeScoreData['relievers'][player.nickname] = rawRelieverStats;
