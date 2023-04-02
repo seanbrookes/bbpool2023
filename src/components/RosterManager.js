@@ -204,8 +204,10 @@ const HitterPosContainer = ({hittersBlob, pos, roster}) => {
             rowStyle['fontWeight'] = 300;
             rowStyle['color'] = '#777777';
           }
-  
         }
+        if (player.status && player.status === 'prospect') {
+          rowStyle['backgroundColor'] = '#eff1fc';          
+        }        
         return (
           <tr style={rowStyle} key={index}>
             <td style={{fontSize: '9px', color: '#444444'}}>{index + 1}</td>
@@ -261,6 +263,9 @@ const StarterPosContainer = ({startersBlob, roster}) => {
           rowStyle['fontWeight'] = 300;
           rowStyle['color'] = '#777777';
         }
+        if (player.status && player.status === 'prospect') {
+          rowStyle['backgroundColor'] = '#eff1fc';          
+        }              
         return (
           <tr style={rowStyle} key={index}>
             <td style={{fontSize: '9px', color: '#444444'}}>{index + 1}</td>
@@ -315,6 +320,9 @@ const ClosersPosContainer = ({pitchersBlob, roster}) => {
           rowStyle['fontWeight'] = 300;
           rowStyle['color'] = '#777777';
         }
+        if (player.status && player.status === 'prospect') {
+          rowStyle['backgroundColor'] = '#eff1fc';          
+        }      
         return (
           <tr style={rowStyle} key={index}>
             <td style={{fontSize: '9px', color: '#444444'}}>{index + 1}</td>
