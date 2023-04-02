@@ -383,25 +383,31 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
 
   useEffect(() => {
 
-    const positionTotals = getRosterTotals(currentRoster);
+    if (currentRoster) {
+      const positionTotals = getRosterTotals(currentRoster);
 
-    if (positionTotals['SP']) {
-      setRosterStartersTotal(positionTotals['SP']);
+      if (positionTotals['SP']) {
+        setRosterStartersTotal(positionTotals['SP']);
+      }
+      if (positionTotals['RP']) {
+        setRosterClosersTotal(positionTotals['RP']);
+      }
+      if (positionTotals['OF']) {
+        setRosterOutfieldTotal(positionTotals['OF']);
+      }
+      else {
+        setRosterCatcherTotal(positionTotals['C']);
+        setRoster1BTotal(positionTotals['1B']);
+        setRoster2BTotal(positionTotals['2B']);
+        setRoster3BTotal(positionTotals['3B']);
+        setRosterSSTotal(positionTotals['SS']);
+        setRosterDHTotal(positionTotals['DH']);
+      }
+  
     }
-    if (positionTotals['RP']) {
-      setRosterClosersTotal(positionTotals['RP']);
-    }
-    if (positionTotals['OF']) {
-      setRosterOutfieldTotal(positionTotals['OF']);
-    }
-    else {
-      setRosterOutfieldTotal(positionTotals['C']);
-      setRosterOutfieldTotal(positionTotals['1B']);
-      setRosterOutfieldTotal(positionTotals['2B']);
-      setRosterOutfieldTotal(positionTotals['3B']);
-      setRosterOutfieldTotal(positionTotals['SS']);
-      setRosterOutfieldTotal(positionTotals['DH']);
-    }
+    // else {
+    //   console.log('| no current roster on set totals calls');
+    // }
 
 
 
