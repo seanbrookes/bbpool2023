@@ -650,7 +650,21 @@ function HomePage() {
     // saveRosters(clonedRosterData); 
   };
 
+  // each new year we have to clear the total property for each player so it doesn't
+  // show up next season with last year total before they get new stats to overwrite
+  const mlbPlayerLink = () => {
+    const clonedRosterData = {...rosterData};
 
+    const a = clonedRosterData;
+    Object.keys(clonedRosterData).map((rosterKey) => {
+      clonedRosterData[rosterKey].players = clonedRosterData[rosterKey].players.map((player) => {
+        let playerLinkId = `${player.nickname.replaceAll('_', '-').toLowerCase()}-${player.playerId}`;
+        player.newsLink = `https://www.mlb.com/player/${playerLinkId}`;
+        return player;
+      });
+    });
+    saveRosters(clonedRosterData); 
+  };
 
   const onHiddenControlClick = (event) => {
     setIsHiddenOn(!isHiddenOn);
@@ -787,6 +801,8 @@ return (<Layout>
     {isHiddenOn && <AddPlayerForm savePlayer={onSavePlayer} />}
     {isHiddenOn&& <button onClick={addNickName}>process nicknames</button>}
     {isHiddenOn&& <button onClick={zeroYearTotals}>zero totals</button>}
+    {isHiddenOn&& <button onClick={mlbPlayerLink}>player links</button>}
+    
 
       <Flex>
         {
