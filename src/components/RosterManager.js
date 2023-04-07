@@ -357,7 +357,7 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
   const [rosterClosersTotal, setRosterClosersTotal] = useState(0);
   const [rosterStartersTotal, setRosterStartersTotal] = useState(0);
   const [rosterOutfieldTotal, setRosterOutfieldTotal] = useState(0);
-  const [rosterCatcherTotal, setRosterCatcherTotal] = useState();
+  const [rosterCatcherTotal, setRosterCatcherTotal] = useState(0);
   const [roster1BTotal, setRoster1BTotal] = useState(0);
   const [roster2BTotal, setRoster2BTotal] = useState(0);
   const [roster3BTotal, setRoster3BTotal] = useState(0);
@@ -414,6 +414,7 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
   }, [currentRoster, currentRosterScoreData]);
 
   useEffect(() => {
+
     const runningHitterTotal =  Number(rosterOutfieldTotal) + Number(rosterCatcherTotal) + Number(roster1BTotal) + Number(roster2BTotal) + Number(roster3BTotal) + Number(rosterSSTotal) + Number(rosterDHTotal);
 
     setRosterHittersTotal(runningHitterTotal);
