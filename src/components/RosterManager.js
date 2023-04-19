@@ -386,23 +386,23 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
     if (currentRoster) {
       const positionTotals = getRosterTotals(currentRoster);
 
-      if (positionTotals['SP']) {
+      // if (positionTotals['SP']) {
         setRosterStartersTotal(positionTotals['SP']);
-      }
-      if (positionTotals['RP']) {
+      // }
+      // if (positionTotals['RP']) {
         setRosterClosersTotal(positionTotals['RP']);
-      }
-      if (positionTotals['OF']) {
+      // }
+      // if (positionTotals['OF']) {
         setRosterOutfieldTotal(positionTotals['OF']);
-      }
-      else {
+      // }
+      // else {
         setRosterCatcherTotal(positionTotals['C']);
         setRoster1BTotal(positionTotals['1B']);
         setRoster2BTotal(positionTotals['2B']);
         setRoster3BTotal(positionTotals['3B']);
         setRosterSSTotal(positionTotals['SS']);
         setRosterDHTotal(positionTotals['DH']);
-      }
+      // }
   
     }
     // else {
