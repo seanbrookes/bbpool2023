@@ -824,7 +824,24 @@ return (<Layout>
       <div style={{margin: '6px 0 0 0'}}>
         <a href="https://sports.yahoo.com/mlb/scoreboard/" target="_blank">Scores</a>
       </div>
-
+      <div>
+        <h3>Trade - June 13, 2023</h3>
+        <div>
+          <p>To Stallions:</p>
+          <ul>
+            <li>RP Jordan Romano Tor</li>
+            <li>OF Kyle Tucker Hou</li>
+          </ul>
+          <p>To Mashers:</p>
+          <ul>
+            <li>Stallions’ 1st Round Pick @ All-Star Break</li>
+            <li>RP Liam Hendricks CHW</li>
+            <li>OF Taylor Ward Ana</li>
+            <li>Move OF Isaac Paredes TB to 2B</li>
+            <li>Activate 3B Josh Jung Tex to Starting Roster</li>
+          </ul>
+        </div>
+      </div>
       
       {isHiddenOn && <textarea rows="12" cols="90" alue={JSON.stringify(rosterData)} />}
   </Layout>);

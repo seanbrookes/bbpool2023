@@ -59,6 +59,12 @@ hiiter total calc:
 
 
 ```
-
+## moving players around after a trade
+- this is a pretty manual process
+- add players to new rosters
+- delete players from old roster
+- manulally update rosters.json to change prospects to regular status
+- remap the player ids
+- click 'process nicknames' button to update roster so they score
 
 special note of appreciation for mlb to be ok with small fish accessing their stats api.
