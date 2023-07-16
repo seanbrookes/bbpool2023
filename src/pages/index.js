@@ -15,6 +15,11 @@ import { usePoolContext } from '../data/PoolContextProvider';
 
 import styled from 'styled-components';
 
+const CONST = {
+  IS_ADMIN_MODE: false,
+};
+
+
 const Flex = styled.div`
   display: flex;
   width: 100%;
@@ -113,7 +118,7 @@ const pitchersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch
 
 function HomePage() {
   const [rosterData, setRosterData] = useState({});
-  const [isHiddenOn, setIsHiddenOn] = useState(false);  // toggle this for admin
+  const [isHiddenOn, setIsHiddenOn] = useState(CONST.IS_ADMIN_MODE);  // toggle this for admin
 
   // let commaString = ['name','roster','pos','team','posType'];
   // let commaSource = [];
